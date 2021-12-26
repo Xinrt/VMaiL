@@ -1,0 +1,31 @@
+{
+  "name": "vmailandroid",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/teamsixer/vmailandroid.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/teamsixer/vmailandroid/issues"
+  },
+  "homepage": "https://gitlab.com/teamsixer/vmailandroid#README",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "hexo-deployer-git": "^3.0.0"
+  }
+}

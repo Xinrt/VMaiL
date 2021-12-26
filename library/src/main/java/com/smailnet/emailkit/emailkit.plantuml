@@ -1,0 +1,719 @@
+@startuml
+
+title __EMAILKIT's Class Diagram__\n
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Converter {
+        {static} + generateSuffix()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Converter.AddressUtils {
+        {static} ~ getCcInfoList()
+        {static} ~ getSenderInfo()
+        {static} ~ getToInfoList()
+        {static} ~ toInternetAddresses()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Converter.ContentUtils {
+        {static} - MULTIPART : String
+        {static} - TEXT_HTML : String
+        {static} - TEXT_PLAIN : String
+        {static} ~ getAttachmentList()
+        {static} ~ getAttachmentPart()
+        {static} ~ getCid()
+        {static} ~ getMainBody()
+        {static} ~ getTexts()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Converter.DateUtils {
+        {static} ~ getDateInfo()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Converter.FlagsUtils {
+        {static} ~ getFlags()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Converter.MailTypeUtils {
+        {static} ~ getMailConfiguration()
+        {static} ~ isNetEaseMail()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Converter.MessageUtils {
+        {static} ~ toInternetMessage()
+        {static} ~ toLocalMessage()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Converter.TextUtils {
+        {static} ~ decodeText()
+        {static} ~ encodeText()
+        {static} ~ getMimeType()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Draft {
+        - attachment : File
+        - bcc : Address[]
+        - cc : Address[]
+        - html : String
+        - nickname : String
+        - replyDraft : Boolean
+        - replyFolderName : String
+        - replyToAll : Boolean
+        - replyUid : Long
+        - subject : String
+        - text : String
+        - to : Address[]
+        + getReplyDraft()
+        + getReplyFolderName()
+        + getReplyToAll()
+        + getReplyUid()
+        + setAttachment()
+        + setBcc()
+        + setBcc()
+        + setCc()
+        + setCc()
+        + setHTML()
+        + setNickname()
+        + setReplyDraft()
+        + setReplyFolderName()
+        + setReplyToAll()
+        + setReplyUid()
+        + setSubject()
+        + setText()
+        + setTo()
+        + setTo()
+        ~ getAttachment()
+        ~ getBcc()
+        ~ getCc()
+        ~ getHTML()
+        ~ getNickname()
+        ~ getSubject()
+        ~ getText()
+        ~ getTo()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.DraftBox {
+        + saveMsg()
+        ~ DraftBox()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.EmailCore {
+        {static} ~ auth()
+        {static} ~ deleteMsg()
+        {static} ~ deleteMsgList()
+        {static} ~ getDefaultFolderList()
+        {static} ~ getDefaultFolderList()
+        {static} ~ getMsg()
+        {static} ~ getMsgCount()
+        {static} ~ getMsgList()
+        {static} ~ getUIDList()
+        {static} ~ load()
+        {static} ~ monitorNewMsg()
+        {static} ~ moveMsg()
+        {static} ~ moveMsgList()
+        {static} ~ readMsg()
+        {static} ~ readMsgList()
+        {static} ~ receive()
+        {static} ~ saveToDraft()
+        {static} ~ searchRecipient()
+        {static} ~ searchSender()
+        {static} ~ searchSubject()
+        {static} ~ send()
+        {static} ~ starMsg()
+        {static} ~ starMsgList()
+        {static} ~ sync()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.EmailKit {
+        {static} + NO_CACHED_UID : long
+        {static} + auth()
+        {static} + destroy()
+        {static} + initialize()
+        {static} + initialize()
+        {static} + useIMAPService()
+        {static} + useSMTPService()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.EmailKit.Config {
+        - account : String
+        - imapHost : String
+        - imapPort : int
+        - imapSSL : boolean
+        - nickname : String
+        - password : String
+        - smtpHost : String
+        - smtpPort : int
+        - smtpSSL : boolean
+        - smtpSTARTTLS : boolean
+        + getAccount()
+        + getIMAPHost()
+        + getIMAPPort()
+        + getNickname()
+        + getPassword()
+        + getSMTPHost()
+        + getSMTPPort()
+        + isIMAPSSL()
+        + isSMTPSSL()
+        + isSmtpSTARTTLS()
+        + setAccount()
+        + setIMAP()
+        + setMailType()
+        + setNickname()
+        + setPassword()
+        + setSMTP()
+        + setSMTP()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.GetAuthCallback {
+        {abstract} + onFailure()
+        {abstract} + onSuccess()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.GetCountCallback {
+        {abstract} + onFailure()
+        {abstract} + onSuccess()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.GetDownloadCallback {
+        {abstract} + download()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.GetFolderListCallback {
+        {abstract} + onFailure()
+        {abstract} + onSuccess()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.GetLoadCallback {
+        {abstract} + onFailure()
+        {abstract} + onSuccess()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.GetMsgCallback {
+        {abstract} + onFailure()
+        {abstract} + onSuccess()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.GetMsgListCallback {
+        {abstract} + onFailure()
+        {abstract} + onSuccess()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.GetOperateCallback {
+        {abstract} + onFailure()
+        {abstract} + onSuccess()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.GetReceiveCallback {
+        {abstract} + onFailure()
+        {abstract} + onFinish()
+        {abstract} + receiving()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.GetSearchCallback {
+        {abstract} + onFailure()
+        {abstract} + onSuccess()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.GetSendCallback {
+        {abstract} + onFailure()
+        {abstract} + onSuccess()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.GetSyncCallback {
+        {abstract} + onFailure()
+        {abstract} + onSuccess()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.GetUIDListCallback {
+        {abstract} + onFailure()
+        {abstract} + onSuccess()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.MailType {
+        {static} + $126 : String
+        {static} + $163 : String
+        {static} + EXMAIL : String
+        {static} + FOXMAIL : String
+        {static} + GMAIL : String
+        {static} + OFFICE365 : String
+        {static} + OUTLOOK : String
+        {static} + QQ : String
+        {static} + YEAH : String
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.EmailKit.OnMsgListener {
+        {abstract} + onError()
+        {abstract} + onMsg()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.EmailUtils {
+        {static} ~ getFolder()
+        {static} ~ getSession()
+        {static} ~ getStore()
+        {static} ~ getTransport()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Folder {
+        - folderName : String
+        + getFolderName()
+        + getMsg()
+        + getMsgCount()
+        + getMsgList()
+        + getUIDList()
+        + load()
+        + operator()
+        + receive()
+        + searcher()
+        + sync()
+        ~ Folder()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.IMAPService {
+        + getDefaultFolderList()
+        + getDefaultFolderList()
+        + getDraftBox()
+        + getFolder()
+        + getInbox()
+        ~ IMAPService()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Inbox {
+        + searcher()
+        + setMsgListener()
+        ~ Inbox()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Message {
+        - attachment : boolean
+        - subject : String
+        - uid : long
+        + Message()
+        + getContent()
+        + getFlags()
+        + getRecipients()
+        + getSender()
+        + getSentDate()
+        + getSubject()
+        + getUID()
+        + setAttachment()
+        + setContent()
+        + setFlags()
+        + setRecipients()
+        + setSender()
+        + setSentDate()
+        + setSubject()
+        + setUID()
+        - existAttachment()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Message.Content {
+        + getAttachmentList()
+        + getMainBody()
+        ~ Content()
+        ~ setAttachments()
+        ~ setMainBody()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Message.Content.Attachment {
+        - cid : String
+        - file : File
+        - filename : String
+        - isInline : boolean
+        - size : int
+        - type : String
+        + download()
+        + getCid()
+        + getFile()
+        + getFilename()
+        + getLazyLoading()
+        + getSize()
+        + getType()
+        + isInline()
+        ~ setCid()
+        ~ setFile()
+        ~ setFilename()
+        ~ setInline()
+        ~ setLazyLoading()
+        ~ setSize()
+        ~ setType()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.Message.Content.Attachment.LazyLoading {
+        {abstract} + loading()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.Message.Content.GetAttachmentsCallback {
+        {abstract} + get()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.Message.Content.GetCidListCallback {
+        {abstract} + get()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    interface com.smailnet.emailkit.Message.Content.GetMainBodyCallback {
+        {abstract} + get()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Message.Content.MainBody {
+        - text : String
+        - type : String
+        + getText()
+        + getType()
+        ~ setText()
+        ~ setType()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Message.Flags {
+        - read : boolean
+        - star : boolean
+        + isRead()
+        + isStar()
+        ~ Flags()
+        ~ setRead()
+        ~ setStar()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Message.Recipients {
+        - ccList : List<Cc>
+        - toList : List<To>
+        + getCcList()
+        + getToList()
+        ~ Recipients()
+        ~ setCcList()
+        ~ setToList()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Message.Recipients.Cc {
+        ~ Cc()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Message.Recipients.To {
+        ~ To()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Message.Sender {
+        ~ Sender()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Message.SentDate {
+        - millisecond : long
+        - text : String
+        + getMillisecond()
+        + getText()
+        ~ SentDate()
+        ~ setMillisecond()
+        ~ setText()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Message.User {
+        - address : String
+        - nickname : String
+        + getAddress()
+        + getNickname()
+        ~ User()
+        ~ setAddress()
+        ~ setNickname()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.ObjectManager {
+        {static} - context : Context
+        {static} - directory : String
+        {static} - handler : Handler
+        {static} - listenerThreadService : ScheduledExecutorService
+        {static} - multiThreadService : ExecutorService
+        {static} - session : Session
+        {static} - singleThreadService : ExecutorService
+        {static} - store : IMAPStore
+        {static} - transport : Transport
+        {static} ~ destroy()
+        {static} ~ getContext()
+        {static} ~ getDirectory()
+        {static} ~ getHandler()
+        {static} ~ getListenerThreadService()
+        {static} ~ getMultiThreadService()
+        {static} ~ getSession()
+        {static} ~ getSingleThreadService()
+        {static} ~ getStore()
+        {static} ~ getTransport()
+        {static} ~ setContext()
+        {static} ~ setDirectory()
+        {static} ~ setSession()
+        {static} ~ setStore()
+        {static} ~ setTransport()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Operate {
+        - folderName : String
+        + deleteMsg()
+        + deleteMsgList()
+        + moveMsg()
+        + moveMsgList()
+        + readMsg()
+        + readMsgList()
+        + starMsg()
+        + starMsgList()
+        ~ Operate()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.SMTPService {
+        + send()
+        ~ SMTPService()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.Search {
+        - folderName : String
+        + searchRecipient()
+        + searchSender()
+        + searchSubject()
+        ~ Search()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.UIDHandler {
+        {static} ~ nextUIDArray()
+        {static} ~ syncUIDArray()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.UIDHandler.Basis {
+        {static} - binarySearch()
+        {static} - deleteUID()
+        {static} - insertUID()
+        {static} - searchIndex()
+    }
+  }
+  
+
+  namespace com.smailnet.emailkit {
+    class com.smailnet.emailkit.UIDHandler.Result {
+        - delArray : long[]
+        - newArray : long[]
+        ~ Result()
+        ~ getDelArray()
+        ~ getNewArray()
+    }
+  }
+  
+
+  com.smailnet.emailkit.Converter +-down- com.smailnet.emailkit.Converter.AddressUtils
+  com.smailnet.emailkit.Converter +-down- com.smailnet.emailkit.Converter.ContentUtils
+  com.smailnet.emailkit.Converter +-down- com.smailnet.emailkit.Converter.DateUtils
+  com.smailnet.emailkit.Converter +-down- com.smailnet.emailkit.Converter.FlagsUtils
+  com.smailnet.emailkit.Converter +-down- com.smailnet.emailkit.Converter.MailTypeUtils
+  com.smailnet.emailkit.Converter +-down- com.smailnet.emailkit.Converter.MessageUtils
+  com.smailnet.emailkit.Converter +-down- com.smailnet.emailkit.Converter.TextUtils
+  com.smailnet.emailkit.DraftBox -up-|> com.smailnet.emailkit.Folder
+  com.smailnet.emailkit.DraftBox o-- com.smailnet.emailkit.EmailKit.Config : config
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.Config
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.GetAuthCallback
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.GetCountCallback
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.GetDownloadCallback
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.GetFolderListCallback
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.GetLoadCallback
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.GetMsgCallback
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.GetMsgListCallback
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.GetOperateCallback
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.GetReceiveCallback
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.GetSearchCallback
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.GetSendCallback
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.GetSyncCallback
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.GetUIDListCallback
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.MailType
+  com.smailnet.emailkit.EmailKit +-down- com.smailnet.emailkit.EmailKit.OnMsgListener
+  com.smailnet.emailkit.Folder o-- com.smailnet.emailkit.EmailKit.Config : config
+  com.smailnet.emailkit.IMAPService o-- com.smailnet.emailkit.EmailKit.Config : config
+  com.smailnet.emailkit.Inbox -up-|> com.smailnet.emailkit.Folder
+  com.smailnet.emailkit.Inbox o-- com.smailnet.emailkit.EmailKit.Config : config
+  com.smailnet.emailkit.Message o-- com.smailnet.emailkit.Message.Content : content
+  com.smailnet.emailkit.Message o-- com.smailnet.emailkit.Message.Flags : flags
+  com.smailnet.emailkit.Message o-- com.smailnet.emailkit.Message.Recipients : recipients
+  com.smailnet.emailkit.Message o-- com.smailnet.emailkit.Message.Sender : sender
+  com.smailnet.emailkit.Message o-- com.smailnet.emailkit.Message.SentDate : sentDate
+  com.smailnet.emailkit.Message +-down- com.smailnet.emailkit.Message.Content
+  com.smailnet.emailkit.Message +-down- com.smailnet.emailkit.Message.Flags
+  com.smailnet.emailkit.Message +-down- com.smailnet.emailkit.Message.Recipients
+  com.smailnet.emailkit.Message +-down- com.smailnet.emailkit.Message.Sender
+  com.smailnet.emailkit.Message +-down- com.smailnet.emailkit.Message.SentDate
+  com.smailnet.emailkit.Message +-down- com.smailnet.emailkit.Message.User
+  com.smailnet.emailkit.Message.Content o-- com.smailnet.emailkit.Message.Content.GetAttachmentsCallback : getAttachmentsCallback
+  com.smailnet.emailkit.Message.Content o-- com.smailnet.emailkit.Message.Content.GetMainBodyCallback : getMainBodyCallback
+  com.smailnet.emailkit.Message.Content +-down- com.smailnet.emailkit.Message.Content.Attachment
+  com.smailnet.emailkit.Message.Content +-down- com.smailnet.emailkit.Message.Content.GetAttachmentsCallback
+  com.smailnet.emailkit.Message.Content +-down- com.smailnet.emailkit.Message.Content.GetCidListCallback
+  com.smailnet.emailkit.Message.Content +-down- com.smailnet.emailkit.Message.Content.GetMainBodyCallback
+  com.smailnet.emailkit.Message.Content +-down- com.smailnet.emailkit.Message.Content.MainBody
+  com.smailnet.emailkit.Message.Content.Attachment o-- com.smailnet.emailkit.Message.Content.Attachment.LazyLoading : lazyLoading
+  com.smailnet.emailkit.Message.Content.Attachment +-down- com.smailnet.emailkit.Message.Content.Attachment.LazyLoading
+  com.smailnet.emailkit.Message.Recipients +-down- com.smailnet.emailkit.Message.Recipients.Cc
+  com.smailnet.emailkit.Message.Recipients +-down- com.smailnet.emailkit.Message.Recipients.To
+  com.smailnet.emailkit.Message.Recipients.Cc -up-|> com.smailnet.emailkit.Message.User
+  com.smailnet.emailkit.Message.Recipients.To -up-|> com.smailnet.emailkit.Message.User
+  com.smailnet.emailkit.Message.Sender -up-|> com.smailnet.emailkit.Message.User
+  com.smailnet.emailkit.Operate o-- com.smailnet.emailkit.EmailKit.Config : config
+  com.smailnet.emailkit.SMTPService o-- com.smailnet.emailkit.EmailKit.Config : config
+  com.smailnet.emailkit.Search o-- com.smailnet.emailkit.EmailKit.Config : config
+  com.smailnet.emailkit.UIDHandler +-down- com.smailnet.emailkit.UIDHandler.Basis
+  com.smailnet.emailkit.UIDHandler +-down- com.smailnet.emailkit.UIDHandler.Result
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

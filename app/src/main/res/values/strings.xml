@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Vmail</string>
+    <!-- Mingyan Wang SDK   IFLYTEK TOKEN FOR STT -->
+    <string name="app_id">602740cb</string>
+</resources>
